@@ -1,34 +1,27 @@
 [gd_scene format=3 uid="uid://b4ati6vh86t8t"]
 
-[ext_resource type="PackedScene" uid="uid://d1urynih8ert2" path="res://scenes/card.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://bs07cij7s10kd" path="res://scripts/game.gd" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://dl5w7xb48f5o0" path="res://scenes/deck.tscn" id="3_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://dxnpd5n613trf" path="res://scenes/card_spawn.tscn" id="4_lbhrr"]
 
 [node name="Game" type="Node2D" unique_id=2121040899]
-position = Vector2(0, 5)
 script = ExtResource("1_yqjtg")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=788909676]
 
-[node name="Card" parent="." unique_id=209108492 instance=ExtResource("1_uwrxv")]
-position = Vector2(-240, 0)
-card_rank = 12
-card_suit = "Hearts"
-
-[node name="Card2" parent="." unique_id=251602299 instance=ExtResource("1_uwrxv")]
-position = Vector2(-80, 0)
-card_suit = "Clubs"
-
-[node name="Card3" parent="." unique_id=1445609626 instance=ExtResource("1_uwrxv")]
-position = Vector2(80, 0)
-card_rank = 4
-
-[node name="Card4" parent="." unique_id=2136856403 instance=ExtResource("1_uwrxv")]
-position = Vector2(240, 0)
-card_rank = 8
-card_suit = "Spades"
-
 [node name="Deck" parent="." unique_id=1411645376 instance=ExtResource("3_lnu2h")]
-position = Vector2(-332, -77)
+position = Vector2(0, -177)
 
-[connection signal="selected" from="Card" to="." method="_on_card_selected"]
+[node name="Room" type="Node2D" parent="." unique_id=1551970481]
+
+[node name="CardSpawn1" parent="Room" unique_id=615721407 instance=ExtResource("4_lbhrr")]
+position = Vector2(-240, 0)
+
+[node name="CardSpawn2" parent="Room" unique_id=896101646 instance=ExtResource("4_lbhrr")]
+position = Vector2(-80, 0)
+
+[node name="CardSpawn3" parent="Room" unique_id=1128565079 instance=ExtResource("4_lbhrr")]
+position = Vector2(80, 0)
+
+[node name="CardSpawn4" parent="Room" unique_id=499973798 instance=ExtResource("4_lbhrr")]
+position = Vector2(240, 0)

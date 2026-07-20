@@ -3,8 +3,10 @@ extends Node2D
 
 signal selected(card)
 
-@export var card_rank: int = 7
-@export var card_suit: String = "Diamonds"
+@export var rank: int = 7
+@export var suit: String = "Diamonds"
+
+var slot
 
 @onready var rank_label: Label = $RankLabel
 @onready var suit_label: Label = $SuitLabel
@@ -21,8 +23,13 @@ func _process(_delta: float) -> void:
 
 
 func update_display() -> void:
-	rank_label.text = str(card_rank)
-	suit_label.text = card_suit
+	rank_label.text = str(rank)
+	suit_label.text = suit
+
+
+func set_card_data(data: Dictionary) -> void:
+	suit = data["Suit"]
+	rank = data["Rank"]
 
 
 func _on_click_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:

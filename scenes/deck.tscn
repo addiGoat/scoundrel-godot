@@ -1,18 +1,21 @@
 [gd_scene format=3 uid="uid://dl5w7xb48f5o0"]
 
+[ext_resource type="Script" uid="uid://d2fysuy273s5x" path="res://scripts/deck.gd" id="1_sdhao"]
+
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cxodx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_cxodx"]
 font_size = 14
 
 [node name="Deck" type="Node2D" unique_id=1411645376]
+script = ExtResource("1_sdhao")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1384110219]
 position = Vector2(0, -50)
 scale = Vector2(75, 100)
 texture = SubResource("PlaceholderTexture2D_cxodx")
 
-[node name="Label" type="Label" parent="." unique_id=2145061823]
+[node name="CardsLeftLabel" type="Label" parent="." unique_id=2145061823]
 offset_left = -41.0
 offset_top = -77.0
 offset_right = 42.0
