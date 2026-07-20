@@ -29,7 +29,6 @@ offset_bottom = -7.0
 label_settings = SubResource("LabelSettings_cxodx")
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("2_6u4wf")
 
 [node name="RankLabel" type="Label" parent="." unique_id=998938110]
 offset_left = -9.0
