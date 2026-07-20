@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dl5w7xb48f5o0"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cxodx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cxodx"]
+font_size = 14
+
+[node name="Deck" type="Node2D" unique_id=1411645376]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1384110219]
+position = Vector2(0, -50)
+scale = Vector2(75, 100)
+texture = SubResource("PlaceholderTexture2D_cxodx")
+
+[node name="Label" type="Label" parent="." unique_id=2145061823]
+offset_left = -41.0
+offset_top = -77.0
+offset_right = 42.0
+offset_bottom = -28.0
+text = "Cards Left:
+52"
+label_settings = SubResource("LabelSettings_cxodx")
+horizontal_alignment = 1
+vertical_alignment = 1

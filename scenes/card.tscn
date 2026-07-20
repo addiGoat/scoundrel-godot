@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://d1urynih8ert2"]
 
 [ext_resource type="Script" uid="uid://c0smok22bu1vb" path="res://scripts/card.gd" id="1_d81rb"]
-[ext_resource type="Script" path="res://scenes/suit_label.gd" id="2_6u4wf"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cxodx"]
 
@@ -11,14 +10,15 @@ font_size = 12
 [sub_resource type="LabelSettings" id="LabelSettings_d81rb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cxodx"]
-size = Vector2(72, 108)
+size = Vector2(66, 100)
 
 [node name="Card" type="Node2D" unique_id=209108492]
+position = Vector2(0, 5)
 script = ExtResource("1_d81rb")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2037597980]
 position = Vector2(3.8146973e-06, -55)
-scale = Vector2(73.00001, 109.50001)
+scale = Vector2(66.667, 100)
 texture = SubResource("PlaceholderTexture2D_cxodx")
 
 [node name="SuitLabel" type="Label" parent="." unique_id=1197521146]
@@ -29,6 +29,7 @@ offset_bottom = -7.0
 label_settings = SubResource("LabelSettings_cxodx")
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="RankLabel" type="Label" parent="." unique_id=998938110]
 offset_left = -9.0
@@ -38,6 +39,7 @@ offset_bottom = -46.0
 label_settings = SubResource("LabelSettings_d81rb")
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="ClickArea" type="Area2D" parent="." unique_id=1155671099]
 
