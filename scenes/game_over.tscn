@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cn8pcrrnt2blr"]
+
+[ext_resource type="Script" uid="uid://d3c10xidjp3po" path="res://scripts/game_over.gd" id="1_xeevv"]
+
+[node name="GameOver" type="Node2D" unique_id=1307849381]
+script = ExtResource("1_xeevv")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=95907145]
+
+[node name="Label" type="Label" parent="." unique_id=1133307949]
+offset_left = -47.0
+offset_top = -99.0
+offset_right = 45.0
+offset_bottom = -76.0
+text = "Game Over!"
+
+[node name="RestartButton" type="Button" parent="." unique_id=1549042575]
+offset_left = -33.0
+offset_top = 53.0
+offset_right = 32.0
+offset_bottom = 84.0
+text = "Restart"
+
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]

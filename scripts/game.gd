@@ -9,12 +9,15 @@ var current_drawn_cards = 0
 @onready var room: Node2D = $Room
 @onready var card_spawns = room.find_children("CardSpawn?")
 @onready var marker: Marker2D = $Room/CardSpawn1
+@onready var player: Player = $Player
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# draw_new_card()
 	fill_room_to_max()
+
+	player.player_died.connect(_on_player_died)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -41,14 +44,15 @@ func add_card_to_room(card: Card, spawn) -> void:
 
 
 func draw_new_card() -> Card:
-	var card_data = deck.get_card()
-	if card_data == null:
-		print("[game] - No cards remaining")
+	if deck.is_empty():
 		return null
 
 	var card: Card = CARD_SCENE.instantiate()
-	card.set_card_data(card_data)
+	card.set_card_data(deck.get_card())
+
+	# Connecting it to the on_selected signal
 	card.selected.connect(_on_card_selected)
+
 	print("[game] - Drawn card: ", card)
 	return card
 
@@ -62,10 +66,20 @@ func fill_room_to_max() -> void:
 
 
 func handle_card_interaction(card: Card) -> void:
+	match card.suit:
+		"HEALTH":
+			print("Health card selected")
+		"MONSTER":
+			player.take_damage(card.rank)
+			print("Monster card selected")
+		"WEAPON":
+			print("Weapon card selected")
+		"SPELL":
+			print("Spell card selected")
+		_:
+			print("unrecognized suit")
 	card.slot.remove_card()
 	room.remove_child(card)
-
-	pass
 
 
 func _on_card_selected(card: Card) -> void:
@@ -76,3 +90,8 @@ func _on_card_selected(card: Card) -> void:
 		fill_room_to_max()
 
 	print("[game] - Selected Card: ", card.rank, " of ", card.suit)
+
+
+func _on_player_died() -> void:
+	print("[game] - player died, game over")
+	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
