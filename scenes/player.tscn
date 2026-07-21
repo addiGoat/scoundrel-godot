@@ -9,6 +9,7 @@ font_size = 24
 font_size = 24
 
 [node name="Player" type="Node2D" unique_id=1208135947]
+position = Vector2(-3, -41)
 script = ExtResource("1_3vyb7")
 
 [node name="HealthText" type="Label" parent="." unique_id=566594912]
@@ -26,6 +27,25 @@ offset_top = -19.0
 offset_right = 97.0
 offset_bottom = 15.0
 text = "20"
+label_settings = SubResource("LabelSettings_4jg7w")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="WeaponText" type="Label" parent="." unique_id=740395664]
+offset_left = -98.0
+offset_top = 29.0
+offset_right = 64.0
+offset_bottom = 63.0
+text = "Weapon Dmg:"
+label_settings = SubResource("LabelSettings_cxodx")
+metadata/_edit_use_anchors_ = true
+
+[node name="WeaponLabel" type="Label" parent="." unique_id=1863625382]
+offset_left = 70.0
+offset_top = 29.0
+offset_right = 97.0
+offset_bottom = 63.0
+text = "0"
 label_settings = SubResource("LabelSettings_4jg7w")
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true

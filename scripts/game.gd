@@ -68,11 +68,13 @@ func fill_room_to_max() -> void:
 func handle_card_interaction(card: Card) -> void:
 	match card.suit:
 		"HEALTH":
+			player.heal(card.rank)
 			print("Health card selected")
 		"MONSTER":
 			player.take_damage(card.rank)
 			print("Monster card selected")
 		"WEAPON":
+			player.equip_weapon(card.rank)
 			print("Weapon card selected")
 		"SPELL":
 			print("Spell card selected")
