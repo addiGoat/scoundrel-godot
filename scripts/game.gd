@@ -18,11 +18,7 @@ func _ready() -> void:
 	fill_room_to_max()
 
 	player.player_died.connect(_on_player_died)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+	deck.print_deck_info()
 
 
 func update_room() -> void:
@@ -34,15 +30,6 @@ func update_room() -> void:
 	print(current_drawn_cards)
 
 
-func add_card_to_room(card: Card, spawn) -> void:
-	if card == null:
-		return
-	card.slot = spawn
-	spawn.place_card(card)
-	room.add_child(card)
-	update_room()
-
-
 func draw_new_card() -> Card:
 	if deck.is_empty():
 		return null
@@ -52,9 +39,16 @@ func draw_new_card() -> Card:
 
 	# Connecting it to the on_selected signal
 	card.selected.connect(_on_card_selected)
-
-	print("[game] - Drawn card: ", card)
 	return card
+
+
+func add_card_to_room(card: Card, spawn) -> void:
+	if card == null:
+		return
+	card.slot = spawn
+	spawn.place_card(card)
+	room.add_child(card)
+	update_room()
 
 
 func fill_room_to_max() -> void:
@@ -62,20 +56,24 @@ func fill_room_to_max() -> void:
 		if spawn.is_empty():
 			print(spawn, " is empty.")
 			add_card_to_room(draw_new_card(), spawn)
-	# add_card_to_room already updates, so no need to call update_room
+
+	player.has_healed_this_turn = false
 
 
 func handle_card_interaction(card: Card) -> void:
 	match card.suit:
-		"HEALTH":
-			player.heal(card.rank)
-			print("Health card selected")
+		"POTION":
+			print("Potion card selected")
+			if !player.has_healed_this_turn:
+				player.heal(card.rank)
+				player.has_healed_this_turn = true
+				print("player has already healed this turn")
 		"MONSTER":
-			player.take_damage(card.rank)
 			print("Monster card selected")
+			player.take_damage(card.rank)
 		"WEAPON":
-			player.equip_weapon(card.rank)
 			print("Weapon card selected")
+			player.equip_weapon(card.rank)
 		"SPELL":
 			print("Spell card selected")
 		_:
@@ -90,8 +88,6 @@ func _on_card_selected(card: Card) -> void:
 	if current_drawn_cards <= 1:
 		print("[game] - Room empty, drawing more cards")
 		fill_room_to_max()
-
-	print("[game] - Selected Card: ", card.rank, " of ", card.suit)
 
 
 func _on_player_died() -> void:

@@ -17,11 +17,6 @@ func _ready() -> void:
 	update_display()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
-
-
 func update_display() -> void:
 	rank_label.text = str(rank)
 	suit_label.text = suit
@@ -35,5 +30,4 @@ func set_card_data(data: Dictionary) -> void:
 func _on_click_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			# print(card_rank, " of ", card_suit)
 			selected.emit(self)

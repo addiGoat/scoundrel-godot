@@ -11,6 +11,7 @@ const character_name = "addi"
 var current_hp: int
 var weapon_damage: int
 var weapon_recently_equipped: bool = false
+var has_healed_this_turn: bool = false
 
 @onready var health_label: Label = $HealthLabel
 @onready var weapon_label: Label = $WeaponLabel
@@ -19,11 +20,6 @@ var weapon_recently_equipped: bool = false
 func _init() -> void:
 	current_hp = max_hp
 	weapon_damage = starting_weapon_damage
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
 
 
 func heal(amount: int) -> void:

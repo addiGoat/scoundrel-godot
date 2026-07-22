@@ -2,10 +2,10 @@ class_name Deck
 extends Node2D
 
 enum Suits {
-	HEALTH,
+	POTION,
 	MONSTER,
 	WEAPON,
-	# SPELL,
+	SPELL,
 }
 
 @export var weapons_amount: int = 9
@@ -25,26 +25,41 @@ var deck_info = []
 
 func _ready() -> void:
 	generate_new_deck()
-	print("-- Deck Debug Info --")
-	for card in deck_info:
-		print(card)
-	print("-- End Deck Debug Info --")
 
 
-# Updates the internal
 func update_deck() -> void:
 	cards_left = deck_info.size()
 	cards_left_label.text = "Cards Left:\n" + str(cards_left)
 
 
+func generate_suit(suit) -> void:
+	var amount: int
+
+	match suit:
+		"POTION":
+			amount = potions_amount
+		"MONSTER":
+			amount = monsters_amount
+		"WEAPON":
+			amount = weapons_amount
+		"SPELL":
+			amount = spells_amount
+	for i in amount:
+		var rank: int
+		if suit != "MONSTER":
+			rank = randi_range(2, 10)
+		else:
+			rank = randi_range(2, 14)
+		var card = {
+			"Suit": suit,
+			"Rank": rank,
+		}
+		deck_info.append(card)
+
+
 func generate_new_deck() -> void:
 	for suit in Suits:
-		for rank in 12:
-			var card = {
-				"Suit": suit,
-				"Rank": rank + 2,
-			}
-			deck_info.append(card)
+		generate_suit(suit)
 	deck_info.shuffle()
 	update_deck()
 
@@ -61,3 +76,10 @@ func get_card():
 
 func is_empty():
 	return cards_left <= 0
+
+
+func print_deck_info() -> void:
+	print("-- Deck Debug Info --")
+	for card in deck_info:
+		print(card)
+	print("-- End Deck Debug Info --")

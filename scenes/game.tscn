@@ -12,6 +12,7 @@ script = ExtResource("1_yqjtg")
 
 [node name="Deck" parent="." unique_id=1411645376 instance=ExtResource("3_lnu2h")]
 position = Vector2(0, -177)
+spells_amount = 0
 
 [node name="Room" type="Node2D" parent="." unique_id=1551970481]
 
