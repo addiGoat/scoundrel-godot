@@ -5,10 +5,13 @@ enum Suits {
 	HEALTH,
 	MONSTER,
 	WEAPON,
-	SPELL,
+	# SPELL,
 }
 
-@export var max_deck_size: int = 52
+@export var weapons_amount: int = 9
+@export var potions_amount: int = 9
+@export var monsters_amount: int = 26
+@export var spells_amount: int = 9
 
 var default_card = {
 	"Suit": "Hearts",
@@ -36,10 +39,10 @@ func update_deck() -> void:
 
 func generate_new_deck() -> void:
 	for suit in Suits:
-		for rank in 13:
+		for rank in 12:
 			var card = {
 				"Suit": suit,
-				"Rank": rank + 1,
+				"Rank": rank + 2,
 			}
 			deck_info.append(card)
 	deck_info.shuffle()
